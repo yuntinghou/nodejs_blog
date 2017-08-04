@@ -6,6 +6,6 @@ module.exports = {
         maxAge: 2592000000
     },
     db: 'cxhoublog',
-    mongodb: 'mongodb://localhost/cxhoublog'
-    //mongodb: 'mongodb://cxhou:hou1234@ds034807.mlab.com:34807/mygame'
+    //mongodb: 'mongodb://localhost/cxhoublog'
+    mongodb: 'mongodb://cxhou:hou1234@ds034807.mlab.com:34807/mygame'
 };

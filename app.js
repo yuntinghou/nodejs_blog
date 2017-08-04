@@ -47,5 +47,5 @@ app.use(function(req, res, next) {
 routes(app);
 
 app.listen(config.port, function () {
-    console.log('${pkg.name} listening on port ${config.port}');
+    console.log(pkg.name + " listening on port " + config.port);
 });

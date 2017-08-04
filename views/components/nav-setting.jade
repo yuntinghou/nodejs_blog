@@ -1,0 +1,13 @@
+.nav-setting
+    .ui.buttons
+        .ui.floating.dropdown.button
+            i.icon.bars
+            .menu
+                if user
+                    a(class="item" href="/posts?author=#{user._id}") Main Page
+                    .divider
+                    a(class="item" href="/posts/create") New Blog
+                    a(class="item" href="/signout") SignOut
+                else
+                    a(class="item" href="/signin") SignIn
+                    a(class="item" href="/signup") SignUp

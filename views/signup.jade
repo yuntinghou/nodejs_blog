@@ -1,0 +1,29 @@
+include header
+.ui.grid
+    div.four.wide.column
+    div.eight.wide.column
+        form(class="ui form segment" method="post" enctype="multipart/form-data")
+            div.field.required
+                label Username
+                input(placeholder="Username" type="text" name="name")
+            div.field.required
+                label Password
+                input(placeholder="Password" type="password" name="password")
+            div.field.required
+                label Re-Password
+                input(placeholder="Re-Password" type="password" name="repassword")
+            div.field.required
+                label Sex
+                select(class="ui compact selection dropdown" name="gender")
+                    option(value="m") Male
+                    option(value="f") Female
+                    option(value="x") N/A
+            div.field.required
+                label Profile
+                input(type="file" name="avatar")
+            div.field.required
+                label Brief Description
+                textarea(name="bio" rows="5")
+            input(type="submit" class="ui button fluid" value="Register")
+
+include footer
