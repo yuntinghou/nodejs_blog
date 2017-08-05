@@ -4,10 +4,12 @@
 var express = require('express');
 var router = express.Router();
 
-var checkNotLogin = require('../middlewares/check').checkNotLogin;
+var checkLogin = require('../middlewares/check').checkLogin;
 
-router.get('/', checkNotLogin, function(req, res, next) {
-    res.send(req.flash());
+router.get('/', checkLogin, function(req, res, next) {
+    req.session.user = null;
+    res.send(req.flash('success', 'Log out'));
+    res.redirect('/posts');
 });
 
 module.exports = router;
