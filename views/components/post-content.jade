@@ -1,0 +1,26 @@
+-var gender = {m : 'Male', f : 'Female', x : 'Unknown'}
+.post-content
+    .ui.grid
+        .four.wide.column
+            a(class="avatar" href="/posts?author=#{post.author._id}" data-title="#{post.author.name} | " + gender[post.author.gender] data-content="#{post.author.bio}")
+                img(class="avatar" src="/img/#{post.author.avatar}")
+        .eight.wide.column
+            .ui.segment
+                h3
+                    a(href="/posts/#{post._id}") #{post.title}
+                pre= post.content
+                div
+                    span.tag= post.create_at
+                    span.tag.right
+                        span= "Review " + post.pv + " "
+                        span Comment #{post.commentsCount}
+                    -if (user && post.author._id && user._id.toString() === post.author._id.toString())
+                        div.ui.inline.dropdown
+                            div.text
+                            i.dropdown.icon
+                            div.menu
+                                div.item
+                                    a(href="/posts/" + post._id + "/Edit") Edit
+                                div.item
+                                    a(href="/posts/" + post._id + "/remove") Remove
+

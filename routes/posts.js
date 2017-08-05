@@ -3,7 +3,14 @@ var router = express.Router();
 var PostModel = require('../models/posts');
 var checkLogin = require('../middlewares/check').checkLogin;
 router.get('/', function(req, res, next) {
-    res.render('posts', {blog: {title:'cxhou blog', description:"oye"}});
+    var author = req.query.author;
+    PostModel.getPosts(author)
+        .then(function(posts) {
+            res.render('posts', {
+                posts: posts
+            })
+        })
+        .catch(next);
 });
 
 router.post('/',checkLogin, function(req, res, next) {
@@ -45,7 +52,21 @@ router.get('/create', checkLogin, function(req, res, next) {
 });
 
 router.get('/:postId', function(req, res, next) {
-    res.send(req.flash());
+    var postId = req.params.postId;
+    Promise
+        .all([
+            PostModel.getPostById(postId),
+            PostModel.incPv(postId)
+        ])
+        .then (function(result) {
+            var post = result[0];
+            if (!post) {
+                throw new Error("This artical does not exist");
+            }
+            res.render('post', {
+                post: post
+            })
+        })
 });
 
 router.post('/:postId/edit', checkLogin, function(req, res, next) {
