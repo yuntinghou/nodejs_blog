@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var checkLogin = require('../middlewares/check').checkLogin;
 router.get('/', function(req, res, next) {
-    res.send('I am walking silently');
+    //res.send('I am walking silently');
+    res.render('posts', {blog: {title:'cxhou blog', description:"oye"}});
 });
 
 router.post('/',checkLogin, function(req, res, next) {
