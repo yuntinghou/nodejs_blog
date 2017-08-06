@@ -1,0 +1,26 @@
+include ../header
+.ui.grid
+    .four.wide.column
+    .eight.wide.column
+        .ui.segment
+            .ui.minimal.comments
+                h3.ui.dividing.header comment
+                each comment in comments
+                    div.comment
+                        span.avatar
+                            img(src="/img/" + comment.author.avatar)
+                        div.content
+                            a(class="author" href="/posts?author="+comment.author._id)= comment.author.name
+                            div.metadata
+                                span(class="data")=comment.created_at
+                            div.text=comment.content
+                            if (user && comment.author._id && user._id.toString() === comment.author._id.toString())
+                                div.action
+                                    a(class="reply" href="/posts/"+post._id+"/comment/"+comment._id+"/remove") Delete
+                if (user)
+                    form(class="ui reply form" method="post" action="/posts/"+post._id+"/comment")
+                        div.field
+                            textarea(name="content")
+                        input(type="submit" class="ui icon button" value="Comment")
+
+include ../footer
