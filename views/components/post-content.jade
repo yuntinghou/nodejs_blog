@@ -8,13 +8,13 @@
             .ui.segment
                 h3
                     a(href="/posts/#{post._id}") #{post.title}
-                pre= post.content
+                pre!=post.content
                 div
                     span.tag= post.create_at
                     span.tag.right
                         span= "Review " + post.pv + " "
                         span Comment #{post.commentsCount}
-                    -if (user && post.author._id && user._id.toString() === post.author._id.toString())
+                    if (user && post.author._id && user._id.toString() === post.author._id.toString())
                         div.ui.inline.dropdown
                             div.text
                             i.dropdown.icon

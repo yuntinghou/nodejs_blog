@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var PostModel = require('../models/posts');
 var CommentModel = require('../models/comments');
-
 var checkLogin = require('../middlewares/check').checkLogin;
 router.get('/', function(req, res, next) {
     var author = req.query.author;
@@ -137,7 +136,14 @@ router.post('/:postId/comment', checkLogin, function(req, res, next) {
 });
 
 router.get('/:postId/comment/:commentId/remove', checkLogin, function(req, res, next) {
-    res.send(req.flash());
+    var commentId = req.params.commentId;
+    var author = req.session.user._id;
+    CommentModel.delCommentById(commentId, author)
+        .then(function() {
+            req.flash('success', 'Comment is deleted');
+            res.redirect('back');
+        })
+        .catch(next);
 });
 
 module.exports = router;

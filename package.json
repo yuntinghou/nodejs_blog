@@ -6,7 +6,8 @@
     "build-css": "stylus public/stylesheet/style.styl -o public/css",
     "watch-css": "stylus public/stylesheet/style.styl -o public/css -w",
     "start": "node app.js",
-    "clean": "rm -rf public/css && mkdir -p public/css"
+    "clean": "rm -rf public/css && mkdir -p public/css",
+    "test": "mocha --harmony test"
   },
   "dependencies": {
     "config-lite": "^2.0.0",
@@ -19,11 +20,13 @@
     "express-winston": "^2.4.0",
     "jade": "^1.11.0",
     "marked": "^0.3.6",
+    "mocha": "^3.5.0",
     "moment": "^2.18.1",
     "mongolass": "^2.4.5",
     "objectid-to-timestamp": "^1.3.0",
     "sha1": "^1.1.1",
     "stylus": "^0.54.5",
+    "supertest": "^3.0.0",
     "winston": "^2.3.1"
   },
   "license": "MIT",
